@@ -35,7 +35,7 @@ jobs:
           MAJOR="${VERSION%%.*}"; VERSION="${VERSION#*.}"; MAJOR="${MAJOR#v}"
           MINOR="${VERSION%%.*}"; VERSION="${VERSION#*.}"
           PATCH="${VERSION%%.*}"; VERSION="${VERSION#*.}"
-    
+
           # Increase version
           STRATEGY="${{ inputs.strategy }}"
           if [ "$STRATEGY" = "patch" ]; then
