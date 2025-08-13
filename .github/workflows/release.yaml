@@ -1,7 +1,18 @@
-name: Docker
+name: Release
 
 on:
   push:
+    branches:
+      - main
+    tags:
+      - "v*.*.*"
+
+  workflow_call:
+    inputs:
+      ref_name:
+        description: Tag short ref name like v1.2.3
+        type: string
+        required: true
 
 jobs:
   docker:
@@ -47,3 +58,14 @@ jobs:
           set: |
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
+
+  release:
+    if: ${{ github.event_name == 'push' && github.ref_type == 'tag' || github.event_name == 'workflow_call' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.ref_name || github.ref_name }}
+          generate_release_notes: true
