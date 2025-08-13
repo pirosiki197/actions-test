@@ -53,14 +53,14 @@ jobs:
           fi
           NEW_TAG="v$MAJOR.$MINOR.$PATCH"
           echo "Calculating new tag... $ORIG_VERSION => $NEW_TAG"
-    
+
           # Get current hash and see if it already has a tag
           GIT_COMMIT=$(git rev-parse HEAD)
           if git describe --contains "$GIT_COMMIT" > /dev/null 2>&1; then
             echo "HEAD is already tagged, are you sure this is the right commit?"
             exit 1
           fi
-    
+
           # Only tag if no tag already (would be better if the git describe command above could have a silent option)
           echo "Tagging commit $GIT_COMMIT with $NEW_TAG"
           git tag "$NEW_TAG"
