@@ -36,6 +36,7 @@ jobs:
             type=ref,event=tag
             type=ref,event=pr
             type=sha
+            ${{ github.event_name == 'workflow_dispatch' && format('type=raw,value={0}', inputs.ref_name) }}
             type=raw,value=latest,enable={{is_default_branch}}
           sep-tags: ","
 
@@ -60,7 +61,7 @@ jobs:
             *.cache-to=type=gha,mode=max
 
   release:
-    if: ${{ github.event_name == 'push' && github.ref_type == 'tag' || github.event_name == 'workflow_call' }}
+    if: ${{ github.event_name == 'push' && github.ref_type == 'tag' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
