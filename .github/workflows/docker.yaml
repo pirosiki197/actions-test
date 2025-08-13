@@ -32,6 +32,7 @@ jobs:
         env:
           TAGS: ${{ steps.meta.outputs.tags }}
         with:
+          push: true
           files: |
             ./docker-bake.hcl
             cwd://${{ steps.meta.outputs.bake-file-labels }}

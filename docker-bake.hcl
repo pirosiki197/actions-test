@@ -29,11 +29,11 @@ target "base" {
 target "t1" {
   inherits = ["base"]
   target   = "t1"
-  tags     = tags("t1")
+  tags     = tags("test1")
 }
 
 target "t2" {
   inherits = ["base"]
   target   = "t2"
-  tags     = tags("t2")
+  tags     = tags("test2")
 }
