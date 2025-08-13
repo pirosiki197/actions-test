@@ -25,6 +25,7 @@ jobs:
             type=ref,event=tag
             type=ref,event=pr
             type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
           sep-tags: ","
 
       - uses: docker/login-action@v3
