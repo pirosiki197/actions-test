@@ -29,12 +29,13 @@ jobs:
 
       - name: Build
         uses: docker/bake-action@v6
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
         with:
           files: |
             ./docker-bake.hcl
             cwd://${{ steps.meta.outputs.bake-file-labels }}
             cwd://${{ steps.meta.outputs.bake-file-annotations }}
           set: |
-            TAGS=${{ steps.meta.outputs.tags }}
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
