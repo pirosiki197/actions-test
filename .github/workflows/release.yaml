@@ -47,7 +47,7 @@ jobs:
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: motoki317
+          username: pirosiki197
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
