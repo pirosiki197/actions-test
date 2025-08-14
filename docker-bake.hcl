@@ -12,7 +12,7 @@ variable "TAGS" {
 
 function "tags" {
   params = [image]
-  result = [for tag in split(",", TAGS) : "ghcr.io/motoki317/${image}:${tag}"]
+  result = [for tag in split(",", TAGS) : "ghcr.io/pirosiki197/${image}:${tag}"]
 }
 
 # https://github.com/docker/metadata-action?tab=readme-ov-file#bake-definition
